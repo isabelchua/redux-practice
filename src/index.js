@@ -2,35 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
+import { createStore, combineReducers } from "redux";
+import allReducer from "./reducers";
 
-import { createStore } from "redux";
-
-const increment = () => {
-	return {
-		type: "INCREMENT"
-	};
-};
-
-const decrement = () => {
-	return {
-		type: "DECREMENT"
-	};
-};
-
-const counter = (state = 0, action) => {
-	switch (action.type) {
-		case "INCREMENT":
-			return state + 1;
-		case "DECREMENT":
-			return state - 1;
-	}
-};
-
-let store = createStore(counter);
-
-store.subscribe(() => console.log(store.getState()));
-
-store.dispatch(increment());
+const store = createStore(allReducer);
 
 ReactDOM.render(
 	<React.StrictMode>
